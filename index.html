@@ -343,56 +343,87 @@
             <input type="file" id="file" accept="image/*,video/*" style="color: #888; font-size: 0.8rem;">
             <button class="btn-main" style="background: #2d5bff; margin-top: 10px;" onclick="post()">ĐĂNG BÀI</button>
         </div>
-
-        <div id="feed"></div>
-    </div>
-
-    <script>
-        let user = "";
-
-        function start() {
-            const n = document.getElementById('username').value.trim();
-            if(n) {
-                user = n;
-                document.getElementById('auth-box').style.display = 'none';
-                document.getElementById('forum-content').style.display = 'block';
-            } else { alert("Vui lòng nhập tên!"); }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diễn Đàn 7/1 - Full Version</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #0b0b0b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        function post() {
-            const d = document.getElementById('desc').value;
-            const f = document.getElementById('file').files[0];
-            if(!d && !f) return;
-
-            let media = "";
-            if(f) {
-                const url = URL.createObjectURL(f);
-                media = f.type.startsWith('image') ? `<img src="${url}">` : `<video src="${url}" controls></video>`;
-            }
-
-            const html = `
-                <div class="post-card">
-                    <div class="post-header">👤 ${user}</div>
-                    <div class="post-desc">${d}</div>
-                    <div class="post-media">${media}</div>
-                    <div class="comment-box">
-                        <div class="comment-list"></div>
-                        <input type="text" placeholder="Bình luận..." style="padding:5px; font-size:0.8rem;" onkeypress="if(event.key=='Enter') addCom(this)">
-                    </div>
-                </div>
-            `;
-            document.getElementById('feed').insertAdjacentHTML('afterbegin', html);
-            document.getElementById('desc').value = "";
-            document.getElementById('file').value = "";
+        /* --- THANH GALAXY TOP 1 --- */
+        .galaxy-header {
+            width: 100%;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #8a2387, #e94057, #f27121);
+            background-size: 400% 400%;
+            animation: galaxyAnim 10s ease infinite;
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        function addCom(input) {
-            const txt = input.value.trim();
-            if(!txt) return;
-            const list = input.previousElementSibling;
-            list.innerHTML += `<div class="comment-item"><span class="comment-user">${user}:</span> ${txt}</div>`;
-            input.value = "";
+        .galaxy-header h1 {
+            margin: 0;
+            color: #ffffff; /* Chữ 7/1 màu trắng */
+            letter-spacing: 5px;
+            font-size: 2rem;
         }
-    </script>
-</body>
-</html>
+
+        .settings-btn {
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        @keyframes galaxyAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .dev-info {
+            font-size: 0.85rem;
+            color: #888;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        /* --- KHUNG ĐĂNG KÝ / ĐĂNG NHẬP (GALAXY STYLE) --- */
+        .galaxy-element {
+            background: linear-gradient(180deg, #2d5bff 0%, #ffffff 45%, #ffffff 55%, #d946ef 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            color: #333;
+            width: 90%;
+            max-width: 380px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .galaxy-element h2 { margin-top: 0; font-weight: 800; }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: 1px solid #
