@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hffiuff Hub - Test Version</title>
+    <style>
+        :root {
+            --galaxy: linear-gradient(-45deg, #0f0c29, #302b63, #8a2387, #e94057, #f27121);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #0b0b0b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- THANH GALAXY 7/1 --- */
+        .galaxy-header {
+            width: 100%;
+            background: var(--galaxy);
+            background-size: 400% 400%;
+            animation: galaxyAnim 10s ease infinite;
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+        }
+
+        @keyframes galaxyAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- FORM ĐĂNG NHẬP / ĐĂNG KÝ --- */
+        .auth-container {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 50px;
+            width: 300px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .auth-container h2 { margin-bottom: 20px; color: #e94057; }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background: #222;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .btn-main {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: var(--galaxy);
+            background-size: 200%;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .switch-link {
+            font-size: 0.8rem;
+            color: #aaa;
+            cursor: pointer;
+            margin-top: 15px;
+            display: block;
+        }
+
+        /* --- TRANG CHỦ SAU KHI LOGIN (ẨN MẶC ĐỊNH) --- */
+        #main-content {
+            display: none;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .test-btn {
+            background: #444;
+            padding: 15px 30px;
+            border: 2px solid #8a2387;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+
+        .test-btn:hover { background: #8a2387; }
+
+        /* Danh sách lựa chọn khi bấm nút test */
+        .options-box {
+            display: none;
+            margin-top: 20px;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #f27121;
+        }
+
+        .option-item {
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .option-item:hover { color: #f27121; }
+    </style>
+</head>
+<body>
+
+    <header class="galaxy-header">
+        <h1>7/1</h1>
+    </header>
+
+    <div id="auth-box" class="auth-container">
+        <h2 id="auth-title">Đăng Nhập</h2>
+        <input type="text" id="user" placeholder="Tên đăng nhập">
+        <input type="password" id="pass" placeholder="Mật khẩu">
+        <button class="btn-main" onclick="handleAuth()">Xác Nhận</button>
+        <span class="switch-link" onclick="toggleAuth()">Chưa có tài khoản? Đăng ký ngay</span>
+    </div>
+
+    <div id="main-content">
+        <h2>Chào mừng bạn, <span id="display-user"></span>!</h2>
+        <p>Phiên bản thử nghiệm (Test Mode)</p>
+        
+        <button class="test-btn" onclick="showOptions()">BẤM ĐỂ XEM LỰA CHỌN</button>
+
+        <div id="options-box" class="options-box">
+            <div class="option-item">🔹 Lựa chọn 1: Xem Ảnh/Video</div>
+            <div class="option-item">🔹 Lựa chọn 2: Cài đặt giao diện</div>
+            <div class="option-item">🔹 Lựa chọn 3: Liên hệ hỗ trợ</div>
+            <div class="option-item" onclick="location.reload()" style="color: red;">🔴 Đăng xuất</div>
+        </div>
+    </div>
+
+    <script>
+        let isLoginMode = true;
+
+        function toggleAuth() {
+            isLoginMode = !isLoginMode;
+            document.getElementById('auth-title').innerText = isLoginMode ? "Đăng Nhập" : "Đăng Ký";
+            document.querySelector('.switch-link').innerText = isLoginMode ? "Chưa có tài khoản? Đăng ký ngay" : "Đã có tài khoản? Đăng nhập";
+        }
+
+        function handleAuth() {
+            const user = document.getElementById('user').value;
+            if(user.length < 3) {
+                alert("Vui lòng nhập tên trên 3 ký tự!");
+                return;
+            }
+            // Giả lập đăng nhập thành công
+            document.getElementById('auth-box').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('display-user').innerText = user;
+        }
+
+        function showOptions() {
+            const box = document.getElementById('options-box');
+            box.style.display = (box.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
