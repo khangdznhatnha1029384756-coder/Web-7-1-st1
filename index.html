@@ -176,106 +176,162 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diễn Đàn 7/1 - Hffiuff Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* THIẾT LẬP GỐC - ĐẢM BẢO LUÔN THẤY CHỮ */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #000000; /* Nền đen tuyền */
+            color: #ffffff; /* Chữ trắng rõ ràng */
+            transition: 0.3s;
         }
 
-        header h1 { margin: 0; color: white; font-size: 1.8rem; letter-spacing: 4px; }
+        /* Chế độ sáng (Nếu bấm nút mới đổi) */
+        .light-mode {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+        }
 
-        .nav-icons { display: flex; gap: 20px; align-items: center; }
-        .nav-icons i { cursor: pointer; font-size: 1.3rem; color: white; transition: 0.3s; }
-        .nav-icons i:hover { transform: scale(1.2); }
-
-        @keyframes galaxyAnim {
+        /* HEADER GALAXY 7/1 */
+        .header {
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #8a2387, #e94057, #f27121);
+            background-size: 400% 400%;
+            animation: moveGalaxy 8s infinite;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        @keyframes moveGalaxy {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* --- BỐ CỤC CHÍNH (NGANG) --- */
-        .wrapper {
+        .header h1 { margin: 0; font-size: 24px; color: #fff; letter-spacing: 3px; }
+
+        /* BỐ CỤC NGANG */
+        .main-container {
             display: flex;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 20px auto;
-            padding: 0 15px;
             gap: 20px;
+            padding: 0 10px;
         }
 
-        /* Sidebar bên trái */
-        .sidebar {
+        /* CỘT TRÁI: THÔNG BÁO & DEV */
+        .left-sidebar {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            position: sticky;
-            top: 80px;
-            height: fit-content;
+        }
+        .info-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .light-mode .info-card { background: #f9f9f9; border: 1px solid #ddd; }
+
+        /* CỘT PHẢI: DIỄN ĐÀN */
+        .right-content {
+            flex: 2;
         }
 
-        /* Main Feed bên phải */
-        .content { flex: 2.5; }
-
-        /* Khung nội dung (Card) */
-        .box {
-            background: var(--bg-sidebar);
-            border-radius: 15px;
-            padding: 20px;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        /* Thông báo quan trọng */
-        .notice-box {
-            border-left: 5px solid #e94057;
-            background: linear-gradient(to right, rgba(233, 64, 87, 0.1), transparent);
-        }
-        .notice-box h3 { color: #e94057; margin-top: 0; display: flex; align-items: center; gap: 10px; }
-
-        /* Thông tin Dev */
-        .dev-tag { font-size: 0.85rem; line-height: 1.6; }
-        .dev-tag b { color: #d946ef; }
-
-        /* --- HỆ THỐNG ĐĂNG BÀI --- */
-        .post-input {
-            background: var(--bg-card);
+        /* KHUNG ĐĂNG BÀI */
+        .post-box {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 15px;
             margin-bottom: 25px;
+            border: 1px solid #444;
         }
         textarea {
-            width: 100%; height: 80px; background: transparent; border: none;
-            color: var(--text-main); font-size: 1rem; resize: none; outline: none;
+            width: 100%;
+            background: #000;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 10px;
+            border-radius: 8px;
+            height: 80px;
+            box-sizing: border-box;
         }
-        .post-actions {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border);
-        }
+        .light-mode textarea { background: #fff; color: #000; }
+
         .btn-post {
-            background: var(--galaxy); border: none; padding: 10px 25px;
-            color: white; border-radius: 8px; font-weight: bold; cursor: pointer;
+            background: #d946ef;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
         }
 
-        /* Bài viết */
-        .post-card {
-            background: var(--bg-card);
+        /* BÀI ĐĂNG (POST CARD) */
+        .card {
+            background: #111;
+            border: 1px solid #222;
             border-radius: 15px;
             margin-bottom: 20px;
-            border: 1px solid var(--border);
             overflow: hidden;
         }
-        .post-header { padding: 15px; display: flex; align-items: center; gap: 10px; font-weight: bold; }
-        .post-media img, .post-media video { width: 100%; display: block; max-height: 500px; object-fit: contain; background: #000; }
-        .post-desc { padding: 15px; }
+        .light-mode .card { background: #fff; border: 1px solid #eee; box-shadow: 0 2px 5px #ccc; }
 
-        /* --- LOGIN OVERLAY --- */
-        #auth-overlay {
-            position: fixed; top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.9); z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
+        .card-header { padding: 12px; font-weight: bold; color: #00ffcc; border-bottom: 1px solid #222; }
+        .card-body { padding: 15px; }
+        .card-media img, .card-media video { width: 100%; display: block; max-height: 450px; object-fit: contain; background: #000; }
+
+        /* BÌNH LUẬN */
+        .comment-area { padding: 10px; background: #0a0a0a; border-top: 1px solid #222; }
+        .comment-text { font-size: 13px; color: #bbb; margin-bottom: 5px; }
+
+        /* AUTH OVERLAY */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 999; display: flex; justify-content: center; align-items: center;
         }
-        .auth-form {
-            background: linear-gradient(180deg, #2d5bff 0%, #ffffff 45%, #ffffff 55%, #d946ef 100%);
-            padding: 30px; border-radius: 20px; width: 320px; text-align: center; color: #111;
+        .login-box {
+            background: linear-gradient(180deg, #2d5bff, #ffffff, #d946ef);
+            padding: 30px; border-radius: 20px; width: 300px; text-align: center; color: #000;
         }
-        .auth-form input {
-            width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc;
+        .login-box input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box;}
+
+        @media (max-width: 700px) { .main-container { flex-direction: column; } }
+    </style>
+</head>
+<body>
+
+    <div id="login-overlay">
+        <div class="login-box">
+            <h2 id="auth-title">7/1 LOGIN</h2>
+            <input type="text" id="u-name" placeholder="Tên đăng nhập">
+            <input type="password" id="u-pass" placeholder="Mật khẩu">
+            <button class="btn-post" style="width:100%; background: #000;" onclick="doLogin()">VÀO DIỄN ĐÀN</button>
+            <p style="font-size:12px; cursor:pointer;" onclick="alert('Hãy đăng nhập bằng tên bất kỳ!')">Chưa có tài khoản? Đăng ký</p>
+        </div>
+    </div>
+
+    <div class="header">
+        <h1>7/1</h1>
+        <div style="display:flex; gap:15px; color:white;">
+            <i class="fas fa-adjust" onclick="toggleTheme()" title="Đổi màu nền"></i>
+            <i class="fas fa-cog"></i>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="left-sidebar">
+            <div class="info-card" style="border-left: 4px solid #e94057;">
+                <h4 style="margin:0; color:#e94057;"><i class="fas fa-bullhorn"></i> THÔNG BÁO</h4>
