@@ -135,50 +135,135 @@
     <div id="auth-box" class="auth-container">
         <h2 id="auth-title">Đăng Nhập</h2>
         <input type="text" id="user" placeholder="Tên đăng nhập">
-        <input type="password" id="pass" placeholder="Mật khẩu">
-        <button class="btn-main" onclick="handleAuth()">Xác Nhận</button>
-        <span class="switch-link" onclick="toggleAuth()">Chưa có tài khoản? Đăng ký ngay</span>
-    </div>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hffiuff Hub - Diễn Đàn 7/1</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0b0b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    <div id="main-content">
-        <h2>Chào mừng bạn, <span id="display-user"></span>!</h2>
-        <p>Phiên bản thử nghiệm (Test Mode)</p>
+        /* --- THANH GALAXY 7/1 (Top 1) --- */
+        .galaxy-header {
+            width: 100%;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #8a2387, #e94057, #f27121);
+            background-size: 400% 400%;
+            animation: galaxyAnim 10s ease infinite;
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+        }
+
+        @keyframes galaxyAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- STYLE GALAXY CỦA BẠN --- */
+        .galaxy-element {
+            background: linear-gradient(180deg, #2d5bff 0%, #ffffff 45%, #ffffff 55%, #d946ef 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            color: #333;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* --- FORM ĐĂNG NHẬP --- */
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .btn-main {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #111;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+        .btn-main:hover { background: #333; }
+
+        /* --- GIAO DIỆN DIỄN ĐÀN (Chính) --- */
+        #forum-content {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Khu vực tạo bài viết */
+        .create-post-box {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            margin-bottom: 30px;
+        }
+        .create-post-box h3 { margin-top: 0; color: #e94057; }
         
-        <button class="test-btn" onclick="showOptions()">BẤM ĐỂ XEM LỰA CHỌN</button>
-
-        <div id="options-box" class="options-box">
-            <div class="option-item">🔹 Lựa chọn 1: Xem Ảnh/Video</div>
-            <div class="option-item">🔹 Lựa chọn 2: Cài đặt giao diện</div>
-            <div class="option-item">🔹 Lựa chọn 3: Liên hệ hỗ trợ</div>
-            <div class="option-item" onclick="location.reload()" style="color: red;">🔴 Đăng xuất</div>
-        </div>
-    </div>
-
-    <script>
-        let isLoginMode = true;
-
-        function toggleAuth() {
-            isLoginMode = !isLoginMode;
-            document.getElementById('auth-title').innerText = isLoginMode ? "Đăng Nhập" : "Đăng Ký";
-            document.querySelector('.switch-link').innerText = isLoginMode ? "Chưa có tài khoản? Đăng ký ngay" : "Đã có tài khoản? Đăng nhập";
+        .file-upload-wrapper {
+            background: #222;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            color: #ccc;
+            font-size: 0.9rem;
         }
 
-        function handleAuth() {
-            const user = document.getElementById('user').value;
-            if(user.length < 3) {
-                alert("Vui lòng nhập tên trên 3 ký tự!");
-                return;
-            }
-            // Giả lập đăng nhập thành công
-            document.getElementById('auth-box').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            document.getElementById('display-user').innerText = user;
+        /* Hiển thị bài viết trong Feed */
+        .post-card {
+            background: #1e1e1e;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 1px solid #2a2a2a;
+        }
+        
+        .post-header {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        
+        .post-author {
+            font-weight: bold;
+            color: #00ffcc;
+            font-size: 1.1rem;
         }
 
-        function showOptions() {
-            const box = document.getElementById('options-box');
-            box.style.display = (box.style.display === 'block') ? 'none' : 'block';
-        }
-    </script>
-</body>
-</html>
+        .post-desc {
+            padding: 15px;
+            font-size: 0.95rem;
+            color: #ddd;
+            white-space: pre-wrap
