@@ -3,169 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hffiuff Hub - Test Version</title>
+    <title>Diễn Đàn 7/1 - Professional Forum</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* Biến màu sắc để đổi Theme */
         :root {
+            --bg-body: #0b0b0b;
+            --bg-card: #1a1a1a;
+            --text-color: #ffffff;
+            --border-color: #333;
             --galaxy: linear-gradient(-45deg, #0f0c29, #302b63, #8a2387, #e94057, #f27121);
         }
 
+        .light-theme {
+            --bg-body: #f0f2f5;
+            --bg-card: #ffffff;
+            --text-color: #1c1e21;
+            --border-color: #ddd;
+        }
+
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #0b0b0b;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* --- THANH GALAXY 7/1 --- */
-        .galaxy-header {
-            width: 100%;
-            background: var(--galaxy);
-            background-size: 400% 400%;
-            animation: galaxyAnim 10s ease infinite;
-            padding: 15px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
-        }
-
-        @keyframes galaxyAnim {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* --- FORM ĐĂNG NHẬP / ĐĂNG KÝ --- */
-        .auth-container {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 15px;
-            margin-top: 50px;
-            width: 300px;
-            border: 1px solid #333;
-            text-align: center;
-        }
-
-        .auth-container h2 { margin-bottom: 20px; color: #e94057; }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #444;
-            background: #222;
-            color: white;
-            box-sizing: border-box;
-        }
-
-        .btn-main {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background: var(--galaxy);
-            background-size: 200%;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-
-        .switch-link {
-            font-size: 0.8rem;
-            color: #aaa;
-            cursor: pointer;
-            margin-top: 15px;
-            display: block;
-        }
-
-        /* --- TRANG CHỦ SAU KHI LOGIN (ẨN MẶC ĐỊNH) --- */
-        #main-content {
-            display: none;
-            width: 100%;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .test-btn {
-            background: #444;
-            padding: 15px 30px;
-            border: 2px solid #8a2387;
-            color: white;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            margin-top: 30px;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-color);
             transition: 0.3s;
         }
 
-        .test-btn:hover { background: #8a2387; }
-
-        /* Danh sách lựa chọn khi bấm nút test */
-        .options-box {
-            display: none;
-            margin-top: 20px;
-            background: #222;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #f27121;
-        }
-
-        .option-item {
-            padding: 10px;
-            border-bottom: 1px solid #333;
-            cursor: pointer;
-        }
-
-        .option-item:hover { color: #f27121; }
-    </style>
-</head>
-<body>
-
-    <header class="galaxy-header">
-        <h1>7/1</h1>
-    </header>
-
-    <div id="auth-box" class="auth-container">
-        <h2 id="auth-title">Đăng Nhập</h2>
-        <input type="text" id="user" placeholder="Tên đăng nhập">
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hffiuff Hub - Diễn Đàn 7/1</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b0b0b;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* --- THANH GALAXY 7/1 (Top 1) --- */
-        .galaxy-header {
-            width: 100%;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #8a2387, #e94057, #f27121);
+        /* --- HEADER GALAXY --- */
+        header {
+            background: var(--galaxy);
             background-size: 400% 400%;
             animation: galaxyAnim 10s ease infinite;
-            padding: 15px 0;
-            text-align: center;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
+
+        header h1 { margin: 0; color: white; letter-spacing: 3px; font-size: 1.8rem; }
 
         @keyframes galaxyAnim {
             0% { background-position: 0% 50%; }
@@ -173,257 +53,202 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- STYLE GALAXY CỦA BẠN --- */
-        .galaxy-element {
-            background: linear-gradient(180deg, #2d5bff 0%, #ffffff 45%, #ffffff 55%, #d946ef 100%);
-            border-radius: 20px;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diễn Đàn 7/1 - Hoàng Khang & Bùi Thoại</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #0b0b0b;
-            color: white;
+        /* --- LAYOUT CHÍNH (NGANG) --- */
+        .container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 20px;
+            padding: 0 15px;
         }
 
-        /* --- THANH GALAXY TOP 1 --- */
-        .galaxy-header {
-            width: 100%;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #8a2387, #e94057, #f27121);
-            background-size: 400% 400%;
-            animation: galaxyAnim 10s ease infinite;
-            padding: 15px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        /* Cột trái: Thông báo */
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Cột phải: Bài đăng */
+        .main-feed { flex: 2.5; }
+
+        /* --- THÔNG BÁO QUAN TRỌNG --- */
+        .announcement-box {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid #e94057;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .announcement-box h3 {
+            margin-top: 0;
+            color: #e94057;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- DEV INFO --- */
+        .dev-card {
+            background: var(--bg-card);
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* --- AUTH BOX (LOGIN) --- */
+        .auth-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
             display: flex;
             justify-content: center;
             align-items: center;
+            z-index: 9999;
         }
 
-        .galaxy-header h1 {
-            margin: 0;
-            color: #ffffff;
-            letter-spacing: 5px;
-            font-size: 2rem;
-        }
-
-        /* Nút bánh răng cài đặt */
-        .settings-btn {
-            position: absolute;
-            right: 20px;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .settings-btn:hover { transform: rotate(90deg); }
-
-        @keyframes galaxyAnim {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* --- THÔNG TIN NHÀ PHÁT TRIỂN --- */
-        .dev-info {
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        /* --- STYLE GALAXY ELEMENT (Khung nhập tên) --- */
         .galaxy-element {
             background: linear-gradient(180deg, #2d5bff 0%, #ffffff 45%, #ffffff 55%, #d946ef 100%);
             border-radius: 20px;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-            padding: 25px;
-            color: #333;
-            width: 90%;
-            max-width: 350px;
+            padding: 30px;
+            width: 350px;
             text-align: center;
-            margin-top: 60px;
+            color: #333;
         }
 
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        .btn-main {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            background: #111;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* --- DIỄN ĐÀN --- */
-        #forum-content {
-            display: none;
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
+        /* --- POST CARD --- */
         .post-card {
-            background: #1e1e1e;
+            background: var(--bg-card);
             border-radius: 15px;
-            margin-bottom: 25px;
-            border: 1px solid #333;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
             overflow: hidden;
         }
 
-        .post-header {
-            padding: 12px;
-            background: rgba(255,255,255,0.05);
-            font-weight: bold;
-            color: #00ffcc;
+        .post-header { padding: 15px; font-weight: bold; color: #00ffcc; border-bottom: 1px solid var(--border-color); }
+        .post-desc { padding: 15px; }
+        .post-media img, .post-media video { width: 100%; display: block; }
+
+        /* Nút và Input */
+        input, textarea {
+            width: 100%; padding: 12px; margin: 10px 0;
+            border-radius: 10px; border: 1px solid var(--border-color);
+            background: var(--bg-card); color: var(--text-color);
+            box-sizing: border-box;
         }
 
-        .post-media img, .post-media video {
-            width: 100%;
-            display: block;
+        .btn {
+            background: var(--galaxy); border: none; padding: 12px 20px;
+            color: white; border-radius: 10px; cursor: pointer; font-weight: bold;
         }
 
-        .post-desc { padding: 15px; color: #ddd; }
-
-        /* Bình luận */
-        .comment-box {
-            padding: 10px 15px;
-            background: #111;
-            border-top: 1px solid #222;
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
         }
-        .comment-item { font-size: 0.85rem; margin-bottom: 5px; }
-        .comment-user { color: #d946ef; font-weight: bold; }
-
     </style>
 </head>
 <body>
 
-    <header class="galaxy-header">
+    <div id="auth-screen" class="auth-overlay">
+        <div class="galaxy-element">
+            <h2 id="auth-title">ĐĂNG NHẬP 7/1</h2>
+            <input type="text" id="u-name" placeholder="Tên tài khoản">
+            <input type="password" id="u-pass" placeholder="Mật khẩu">
+            <button class="btn" style="width:100%" onclick="handleAuth()">XÁC NHẬN</button>
+            <p onclick="toggleMode()" style="cursor:pointer; font-size: 0.8rem; margin-top:10px;">Chưa có tài khoản? Đăng ký</p>
+        </div>
+    </div>
+
+    <header>
         <h1>7/1</h1>
-        <i class="fas fa-cog settings-btn" onclick="alert('Cài đặt đang được phát triển!')"></i>
+        <div style="display:flex; gap: 20px; align-items: center;">
+            <i class="fas fa-sun" onclick="changeTheme()" style="cursor:pointer; font-size:1.2rem;"></i>
+            <i class="fas fa-cog" style="cursor:pointer; font-size:1.2rem;"></i>
+        </div>
     </header>
 
-    <div class="dev-info">
-        Nhà phát triển: <b>Hoàng Khang</b> - Chủ nhiệm: <b>Bùi Thoại</b>
-    </div>
+    <div class="container">
+        <div class="sidebar">
+            <div class="announcement-box">
+                <h3><i class="fas fa-bullhorn"></i> THÔNG BÁO</h3>
+                <p style="font-size: 0.9rem; line-height: 1.5;">
+                    - Chào mừng bạn đến với diễn đàn 7/1.<br>
+                    - Vui lòng không đăng nội dung vi phạm.<br>
+                    - Hệ thống đang trong quá trình thử nghiệm.
+                </p>
+            </div>
 
-    <div id="auth-box" class="galaxy-element">
-        <h2 style="margin-top:0;">XÁC NHẬN TÊN</h2>
-        <input type="text" id="username" placeholder="Nhập tên của bạn...">
-        <button class="btn-main" onclick="start()">VÀO DIỄN ĐÀN</button>
-    </div>
-
-    <div id="forum-content">
-        <div class="create-post" style="background: #1a1a1a; padding: 15px; border-radius: 15px; margin-bottom: 20px;">
-            <textarea id="desc" placeholder="Bạn muốn chia sẻ gì?"></textarea>
-            <input type="file" id="file" accept="image/*,video/*" style="color: #888; font-size: 0.8rem;">
-            <button class="btn-main" style="background: #2d5bff; margin-top: 10px;" onclick="post()">ĐĂNG BÀI</button>
+            <div class="dev-card">
+                <p>🚀 <b>Nhà phát triển:</b> Hoàng Khang</p>
+                <p>🎓 <b>Chủ nhiệm:</b> Bùi Thoại</p>
+                <p>📍 <b>Phiên bản:</b> 2.0 (Pro Layout)</p>
+            </div>
         </div>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diễn Đàn 7/1 - Full Version</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #0b0b0b;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
+
+        <div class="main-feed">
+            <div style="background: var(--bg-card); padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid var(--border-color);">
+                <textarea id="p-desc" placeholder="Chia sẻ điều gì đó với diễn đàn..."></textarea>
+                <input type="file" id="p-file" accept="image/*,video/*">
+                <button class="btn" onclick="createPost()">ĐĂNG BÀI</button>
+            </div>
+
+            <div id="feed-container">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        let isLogin = true;
+        let currentUser = "";
+
+        // Đổi giao diện Sáng/Tối
+        function changeTheme() {
+            document.body.classList.toggle('light-theme');
+            const icon = document.querySelector('.fa-sun');
+            icon.classList.toggle('fa-moon');
         }
 
-        /* --- THANH GALAXY TOP 1 --- */
-        .galaxy-header {
-            width: 100%;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #8a2387, #e94057, #f27121);
-            background-size: 400% 400%;
-            animation: galaxyAnim 10s ease infinite;
-            padding: 15px 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        function toggleMode() {
+            isLogin = !isLogin;
+            document.getElementById('auth-title').innerText = isLogin ? "ĐĂNG NHẬP 7/1" : "ĐĂNG KÝ 7/1";
         }
 
-        .galaxy-header h1 {
-            margin: 0;
-            color: #ffffff; /* Chữ 7/1 màu trắng */
-            letter-spacing: 5px;
-            font-size: 2rem;
+        function handleAuth() {
+            const u = document.getElementById('u-name').value;
+            const p = document.getElementById('u-pass').value;
+            if(!u || !p) return alert("Nhập đủ thông tin!");
+            
+            currentUser = u;
+            document.getElementById('auth-screen').style.display = 'none';
         }
 
-        .settings-btn {
-            position: absolute;
-            right: 20px;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
+        function createPost() {
+            const desc = document.getElementById('p-desc').value;
+            const file = document.getElementById('p-file').files[0];
+            if(!desc && !file) return;
+
+            let media = "";
+            if(file) {
+                const url = URL.createObjectURL(file);
+                media = file.type.startsWith('image') ? `<img src="${url}">` : `<video src="${url}" controls></video>`;
+            }
+
+            const html = `
+                <div class="post-card">
+                    <div class="post-header">👤 ${currentUser}</div>
+                    ${desc ? `<div class="post-desc">${desc}</div>` : ''}
+                    <div class="post-media">${media}</div>
+                    <div style="padding: 15px; background: rgba(0,0,0,0.1);">
+                        <input type="text" placeholder="Viết bình luận..." style="margin:0; font-size:0.8rem;">
+                    </div>
+                </div>
+            `;
+            document.getElementById('feed-container').insertAdjacentHTML('afterbegin', html);
+            document.getElementById('p-desc').value = "";
         }
-
-        @keyframes galaxyAnim {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .dev-info {
-            font-size: 0.85rem;
-            color: #888;
-            margin: 15px 0;
-            text-align: center;
-        }
-
-        /* --- KHUNG ĐĂNG KÝ / ĐĂNG NHẬP (GALAXY STYLE) --- */
-        .galaxy-element {
-            background: linear-gradient(180deg, #2d5bff 0%, #ffffff 45%, #ffffff 55%, #d946ef 100%);
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-            padding: 30px;
-            color: #333;
-            width: 90%;
-            max-width: 380px;
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .galaxy-element h2 { margin-top: 0; font-weight: 800; }
-
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 10px;
-            border: 1px solid #
+    </script>
+</body>
+</html>
