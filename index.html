@@ -178,15 +178,86 @@
             background: linear-gradient(180deg, #2d5bff 0%, #ffffff 45%, #ffffff 55%, #d946ef 100%);
             border-radius: 20px;
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diễn Đàn 7/1 - Hoàng Khang & Bùi Thoại</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #0b0b0b;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- THANH GALAXY TOP 1 --- */
+        .galaxy-header {
+            width: 100%;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #8a2387, #e94057, #f27121);
+            background-size: 400% 400%;
+            animation: galaxyAnim 10s ease infinite;
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .galaxy-header h1 {
+            margin: 0;
+            color: #ffffff;
+            letter-spacing: 5px;
+            font-size: 2rem;
+        }
+
+        /* Nút bánh răng cài đặt */
+        .settings-btn {
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .settings-btn:hover { transform: rotate(90deg); }
+
+        @keyframes galaxyAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- THÔNG TIN NHÀ PHÁT TRIỂN --- */
+        .dev-info {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* --- STYLE GALAXY ELEMENT (Khung nhập tên) --- */
+        .galaxy-element {
+            background: linear-gradient(180deg, #2d5bff 0%, #ffffff 45%, #ffffff 55%, #d946ef 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
             padding: 25px;
             color: #333;
             width: 90%;
-            max-width: 400px;
+            max-width: 350px;
             text-align: center;
-            margin-top: 40px;
+            margin-top: 60px;
         }
 
-        /* --- FORM ĐĂNG NHẬP --- */
         input, textarea {
             width: 100%;
             padding: 12px;
@@ -194,7 +265,6 @@
             border-radius: 10px;
             border: 1px solid #ccc;
             box-sizing: border-box;
-            font-family: inherit;
         }
 
         .btn-main {
@@ -206,12 +276,9 @@
             color: white;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
-            transition: 0.2s;
         }
-        .btn-main:hover { background: #333; }
 
-        /* --- GIAO DIỆN DIỄN ĐÀN (Chính) --- */
+        /* --- DIỄN ĐÀN --- */
         #forum-content {
             display: none;
             width: 100%;
@@ -220,50 +287,112 @@
             box-sizing: border-box;
         }
 
-        /* Khu vực tạo bài viết */
-        .create-post-box {
-            background: #1a1a1a;
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #333;
-            margin-bottom: 30px;
-        }
-        .create-post-box h3 { margin-top: 0; color: #e94057; }
-        
-        .file-upload-wrapper {
-            background: #222;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            color: #ccc;
-            font-size: 0.9rem;
-        }
-
-        /* Hiển thị bài viết trong Feed */
         .post-card {
             background: #1e1e1e;
             border-radius: 15px;
             margin-bottom: 25px;
+            border: 1px solid #333;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            border: 1px solid #2a2a2a;
-        }
-        
-        .post-header {
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid #2a2a2a;
-        }
-        
-        .post-author {
-            font-weight: bold;
-            color: #00ffcc;
-            font-size: 1.1rem;
         }
 
-        .post-desc {
-            padding: 15px;
-            font-size: 0.95rem;
-            color: #ddd;
-            white-space: pre-wrap
+        .post-header {
+            padding: 12px;
+            background: rgba(255,255,255,0.05);
+            font-weight: bold;
+            color: #00ffcc;
+        }
+
+        .post-media img, .post-media video {
+            width: 100%;
+            display: block;
+        }
+
+        .post-desc { padding: 15px; color: #ddd; }
+
+        /* Bình luận */
+        .comment-box {
+            padding: 10px 15px;
+            background: #111;
+            border-top: 1px solid #222;
+        }
+        .comment-item { font-size: 0.85rem; margin-bottom: 5px; }
+        .comment-user { color: #d946ef; font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <header class="galaxy-header">
+        <h1>7/1</h1>
+        <i class="fas fa-cog settings-btn" onclick="alert('Cài đặt đang được phát triển!')"></i>
+    </header>
+
+    <div class="dev-info">
+        Nhà phát triển: <b>Hoàng Khang</b> - Chủ nhiệm: <b>Bùi Thoại</b>
+    </div>
+
+    <div id="auth-box" class="galaxy-element">
+        <h2 style="margin-top:0;">XÁC NHẬN TÊN</h2>
+        <input type="text" id="username" placeholder="Nhập tên của bạn...">
+        <button class="btn-main" onclick="start()">VÀO DIỄN ĐÀN</button>
+    </div>
+
+    <div id="forum-content">
+        <div class="create-post" style="background: #1a1a1a; padding: 15px; border-radius: 15px; margin-bottom: 20px;">
+            <textarea id="desc" placeholder="Bạn muốn chia sẻ gì?"></textarea>
+            <input type="file" id="file" accept="image/*,video/*" style="color: #888; font-size: 0.8rem;">
+            <button class="btn-main" style="background: #2d5bff; margin-top: 10px;" onclick="post()">ĐĂNG BÀI</button>
+        </div>
+
+        <div id="feed"></div>
+    </div>
+
+    <script>
+        let user = "";
+
+        function start() {
+            const n = document.getElementById('username').value.trim();
+            if(n) {
+                user = n;
+                document.getElementById('auth-box').style.display = 'none';
+                document.getElementById('forum-content').style.display = 'block';
+            } else { alert("Vui lòng nhập tên!"); }
+        }
+
+        function post() {
+            const d = document.getElementById('desc').value;
+            const f = document.getElementById('file').files[0];
+            if(!d && !f) return;
+
+            let media = "";
+            if(f) {
+                const url = URL.createObjectURL(f);
+                media = f.type.startsWith('image') ? `<img src="${url}">` : `<video src="${url}" controls></video>`;
+            }
+
+            const html = `
+                <div class="post-card">
+                    <div class="post-header">👤 ${user}</div>
+                    <div class="post-desc">${d}</div>
+                    <div class="post-media">${media}</div>
+                    <div class="comment-box">
+                        <div class="comment-list"></div>
+                        <input type="text" placeholder="Bình luận..." style="padding:5px; font-size:0.8rem;" onkeypress="if(event.key=='Enter') addCom(this)">
+                    </div>
+                </div>
+            `;
+            document.getElementById('feed').insertAdjacentHTML('afterbegin', html);
+            document.getElementById('desc').value = "";
+            document.getElementById('file').value = "";
+        }
+
+        function addCom(input) {
+            const txt = input.value.trim();
+            if(!txt) return;
+            const list = input.previousElementSibling;
+            list.innerHTML += `<div class="comment-item"><span class="comment-user">${user}:</span> ${txt}</div>`;
+            input.value = "";
+        }
+    </script>
+</body>
+</html>
