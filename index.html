@@ -131,124 +131,151 @@
         .post-header { padding: 15px; font-weight: bold; color: #00ffcc; border-bottom: 1px solid var(--border-color); }
         .post-desc { padding: 15px; }
         .post-media img, .post-media video { width: 100%; display: block; }
-
-        /* Nút và Input */
-        input, textarea {
-            width: 100%; padding: 12px; margin: 10px 0;
-            border-radius: 10px; border: 1px solid var(--border-color);
-            background: var(--bg-card); color: var(--text-color);
-            box-sizing: border-box;
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diễn Đàn 7/1 - Professional Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #0b0b0b;
+            --bg-sidebar: #161616;
+            --bg-card: #1a1a1a;
+            --text-main: #ffffff;
+            --text-sub: #aaa;
+            --border: #333;
+            --galaxy: linear-gradient(-45deg, #0f0c29, #302b63, #8a2387, #e94057, #f27121);
         }
 
-        .btn {
-            background: var(--galaxy); border: none; padding: 12px 20px;
-            color: white; border-radius: 10px; cursor: pointer; font-weight: bold;
+        /* Chế độ sáng */
+        .light-theme {
+            --bg-body: #f0f2f5;
+            --bg-sidebar: #ffffff;
+            --bg-card: #ffffff;
+            --text-main: #1c1e21;
+            --text-sub: #65676b;
+            --border: #ddd;
         }
 
-        @media (max-width: 768px) {
-            .container { flex-direction: column; }
-        }
-    </style>
-</head>
-<body>
-
-    <div id="auth-screen" class="auth-overlay">
-        <div class="galaxy-element">
-            <h2 id="auth-title">ĐĂNG NHẬP 7/1</h2>
-            <input type="text" id="u-name" placeholder="Tên tài khoản">
-            <input type="password" id="u-pass" placeholder="Mật khẩu">
-            <button class="btn" style="width:100%" onclick="handleAuth()">XÁC NHẬN</button>
-            <p onclick="toggleMode()" style="cursor:pointer; font-size: 0.8rem; margin-top:10px;">Chưa có tài khoản? Đăng ký</p>
-        </div>
-    </div>
-
-    <header>
-        <h1>7/1</h1>
-        <div style="display:flex; gap: 20px; align-items: center;">
-            <i class="fas fa-sun" onclick="changeTheme()" style="cursor:pointer; font-size:1.2rem;"></i>
-            <i class="fas fa-cog" style="cursor:pointer; font-size:1.2rem;"></i>
-        </div>
-    </header>
-
-    <div class="container">
-        <div class="sidebar">
-            <div class="announcement-box">
-                <h3><i class="fas fa-bullhorn"></i> THÔNG BÁO</h3>
-                <p style="font-size: 0.9rem; line-height: 1.5;">
-                    - Chào mừng bạn đến với diễn đàn 7/1.<br>
-                    - Vui lòng không đăng nội dung vi phạm.<br>
-                    - Hệ thống đang trong quá trình thử nghiệm.
-                </p>
-            </div>
-
-            <div class="dev-card">
-                <p>🚀 <b>Nhà phát triển:</b> Hoàng Khang</p>
-                <p>🎓 <b>Chủ nhiệm:</b> Bùi Thoại</p>
-                <p>📍 <b>Phiên bản:</b> 2.0 (Pro Layout)</p>
-            </div>
-        </div>
-
-        <div class="main-feed">
-            <div style="background: var(--bg-card); padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 1px solid var(--border-color);">
-                <textarea id="p-desc" placeholder="Chia sẻ điều gì đó với diễn đàn..."></textarea>
-                <input type="file" id="p-file" accept="image/*,video/*">
-                <button class="btn" onclick="createPost()">ĐĂNG BÀI</button>
-            </div>
-
-            <div id="feed-container">
-                </div>
-        </div>
-    </div>
-
-    <script>
-        let isLogin = true;
-        let currentUser = "";
-
-        // Đổi giao diện Sáng/Tối
-        function changeTheme() {
-            document.body.classList.toggle('light-theme');
-            const icon = document.querySelector('.fa-sun');
-            icon.classList.toggle('fa-moon');
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            transition: 0.3s;
         }
 
-        function toggleMode() {
-            isLogin = !isLogin;
-            document.getElementById('auth-title').innerText = isLogin ? "ĐĂNG NHẬP 7/1" : "ĐĂNG KÝ 7/1";
+        /* --- THANH GALAXY HEADER --- */
+        header {
+            background: var(--galaxy);
+            background-size: 400% 400%;
+            animation: galaxyAnim 10s ease infinite;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
-        function handleAuth() {
-            const u = document.getElementById('u-name').value;
-            const p = document.getElementById('u-pass').value;
-            if(!u || !p) return alert("Nhập đủ thông tin!");
-            
-            currentUser = u;
-            document.getElementById('auth-screen').style.display = 'none';
+        header h1 { margin: 0; color: white; font-size: 1.8rem; letter-spacing: 4px; }
+
+        .nav-icons { display: flex; gap: 20px; align-items: center; }
+        .nav-icons i { cursor: pointer; font-size: 1.3rem; color: white; transition: 0.3s; }
+        .nav-icons i:hover { transform: scale(1.2); }
+
+        @keyframes galaxyAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        function createPost() {
-            const desc = document.getElementById('p-desc').value;
-            const file = document.getElementById('p-file').files[0];
-            if(!desc && !file) return;
-
-            let media = "";
-            if(file) {
-                const url = URL.createObjectURL(file);
-                media = file.type.startsWith('image') ? `<img src="${url}">` : `<video src="${url}" controls></video>`;
-            }
-
-            const html = `
-                <div class="post-card">
-                    <div class="post-header">👤 ${currentUser}</div>
-                    ${desc ? `<div class="post-desc">${desc}</div>` : ''}
-                    <div class="post-media">${media}</div>
-                    <div style="padding: 15px; background: rgba(0,0,0,0.1);">
-                        <input type="text" placeholder="Viết bình luận..." style="margin:0; font-size:0.8rem;">
-                    </div>
-                </div>
-            `;
-            document.getElementById('feed-container').insertAdjacentHTML('afterbegin', html);
-            document.getElementById('p-desc').value = "";
+        /* --- BỐ CỤC CHÍNH (NGANG) --- */
+        .wrapper {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            gap: 20px;
         }
-    </script>
-</body>
-</html>
+
+        /* Sidebar bên trái */
+        .sidebar {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 80px;
+            height: fit-content;
+        }
+
+        /* Main Feed bên phải */
+        .content { flex: 2.5; }
+
+        /* Khung nội dung (Card) */
+        .box {
+            background: var(--bg-sidebar);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Thông báo quan trọng */
+        .notice-box {
+            border-left: 5px solid #e94057;
+            background: linear-gradient(to right, rgba(233, 64, 87, 0.1), transparent);
+        }
+        .notice-box h3 { color: #e94057; margin-top: 0; display: flex; align-items: center; gap: 10px; }
+
+        /* Thông tin Dev */
+        .dev-tag { font-size: 0.85rem; line-height: 1.6; }
+        .dev-tag b { color: #d946ef; }
+
+        /* --- HỆ THỐNG ĐĂNG BÀI --- */
+        .post-input {
+            background: var(--bg-card);
+            margin-bottom: 25px;
+        }
+        textarea {
+            width: 100%; height: 80px; background: transparent; border: none;
+            color: var(--text-main); font-size: 1rem; resize: none; outline: none;
+        }
+        .post-actions {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border);
+        }
+        .btn-post {
+            background: var(--galaxy); border: none; padding: 10px 25px;
+            color: white; border-radius: 8px; font-weight: bold; cursor: pointer;
+        }
+
+        /* Bài viết */
+        .post-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+        .post-header { padding: 15px; display: flex; align-items: center; gap: 10px; font-weight: bold; }
+        .post-media img, .post-media video { width: 100%; display: block; max-height: 500px; object-fit: contain; background: #000; }
+        .post-desc { padding: 15px; }
+
+        /* --- LOGIN OVERLAY --- */
+        #auth-overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.9); z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .auth-form {
+            background: linear-gradient(180deg, #2d5bff 0%, #ffffff 45%, #ffffff 55%, #d946ef 100%);
+            padding: 30px; border-radius: 20px; width: 320px; text-align: center; color: #111;
+        }
+        .auth-form input {
+            width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: 1px solid #ccc;
